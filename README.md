@@ -2,7 +2,7 @@
 https://www.youtube.com/watch?v=tYKRAXIio28
 youtube - Django + React Notes App
 
-setup:
+setup backend:
 mkdir django_react_notes
 cd django_react_notes
 pyenv local 3.10.10 - creates python-version file
@@ -24,6 +24,16 @@ python manage.py migrate
 
 python manage.py createsuperuser - for /admin account richdjaQ223@
 python manage.py changepassword <user_name>- if they forget
+
+setup frontend:
+/django_react_notes$ npm create vite@latest
+choose react, typescript
+
+to start:
+cd frontend
+npm install
+npm run dev
+Local:   http://localhost:5173/
 
 info:
 /home/rich/.pyenv/versions/3.10.10/envs/dfb_full_tutorial/lib/python3.10/site-packages/
