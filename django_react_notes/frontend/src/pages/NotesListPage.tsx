@@ -10,11 +10,20 @@ const NotesListPage = () => {
     }, [])
 
     let getNotes = async () => {
-        let response = await fetch('http://127.0.0.1:8000/api/notes/')
-        console.log('response', response)
-        let data = await response.json()
-        console.log('data', data)
-        setNotes(data)
+        try{
+            let response = await fetch('/api/notes/')
+            console.log('response', response)
+            let data = await response.json()
+            console.log('data', data)
+            setNotes(data)
+
+        } catch (err) {
+            // ⛔️ Uncaught SyntaxError: JSON.parse: unexpected character at
+            // line 1 column 2 of the JSON data
+            console.log('err:', err.message);
+        }
+
+
     }
     
     console.log('notes', notes)

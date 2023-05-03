@@ -31,14 +31,22 @@ choose react, typescript
 npm install react-router-dom
 
 proxy must be set in vite.config.ts not package.json (react)
-proxy: {
-    '/api': {
-        target: 'https://localhost:44305',
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8000',
         changeOrigin: true,
         secure: false,
         ws: true,
+      }
     }
-}
+  }
+})
+
+
+npm i react-scripts@latest - process not found
 
 to start:
 cd frontend
