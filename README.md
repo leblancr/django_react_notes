@@ -28,6 +28,17 @@ python manage.py changepassword <user_name>- if they forget
 setup frontend:
 /django_react_notes$ npm create vite@latest
 choose react, typescript
+npm install react-router-dom
+
+proxy must be set in vite.config.ts not package.json (react)
+proxy: {
+    '/api': {
+        target: 'https://localhost:44305',
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+    }
+}
 
 to start:
 cd frontend
