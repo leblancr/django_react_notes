@@ -1,9 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ListItem = ({note}) => (
-    <div>
-        <h3>{note.body}</h3>
-    </div>
-    )
+    <p><Link to={`notes/${note.id}`}>{note.body}</Link></p>
+        )
+
 
 export default ListItem

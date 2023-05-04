@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ListItem from '../components/ListItem'
+import { Link } from 'react-router-dom'
 
 const NotesListPage = () => {
     let [notes, setNotes] = useState([])
@@ -22,8 +23,6 @@ const NotesListPage = () => {
             // line 1 column 2 of the JSON data
             console.log('err:', err.message);
         }
-
-
     }
     
     console.log('notes', notes)
