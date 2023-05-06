@@ -8,6 +8,13 @@ from .serializers import NoteSerializer
 
 
 @api_view(['GET'])
+def get_notes(request):
+    notes = Note.objects.all().order_by('-updated')
+    serializer = NoteSerializer(notes, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
 def get_routes(request):
     
     routes = [
@@ -29,13 +36,19 @@ def get_routes(request):
 
 
 @api_view(['GET'])
-def get_notes(request):
-    serializer = NoteSerializer(Note.objects.all(), many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
 def get_note(request, pk):
     # notes = Note.objects.get(id=pk)
     serializer = NoteSerializer(Note.objects.get(id=pk), many=False)
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+def update_note(request, pk):
+    data = request.data
+    note = Note.objects.get(id=pk)
+    serializer = NoteSerializer(instance=note, data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+
     return Response(serializer.data)

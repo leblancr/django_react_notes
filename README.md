@@ -47,6 +47,10 @@ export default defineConfig({
 
 
 npm i react-scripts@latest - process not found
+npm i vite-plugin-svgr - to import and use .svg files
+https://www.freecodecamp.org/news/how-to-import-svgs-in-react-and-vite/
+
+useNavigate() instead of useHistory() - react5 -> 6
 
 to start:
 cd frontend

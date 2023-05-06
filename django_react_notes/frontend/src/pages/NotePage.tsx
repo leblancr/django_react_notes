@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { ReactComponent as ChevronLeft } from '../assets/chevron-left.svg'
 
-const NotePage = () => {
+const NotePage = ({match}) => {
     let noteId = useParams().id
     let [note, setNote] = useState(null)
-
-    console.log('noteId', noteId)
+    const history = useNavigate()
     
     // useEffect takes arrow function
     useEffect(() => {
@@ -26,11 +26,31 @@ const NotePage = () => {
         }
     }
 
-    console.log('note', note)
+    // console.log('note', note)
+
+    let updateNote = async () => {
+        fetch(`/api/notes/${note.id}/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(note)
+        })
+    }
+
+    let handleSubmit = () => {
+        updateNote()
+        history('/')
+    }
     
     return (
-        <div>
-            <p>{note?.body}</p>
+        <div className="note">
+            <div className="note-header">
+                <h3>
+                    <ChevronLeft onClick={handleSubmit}/>
+                </h3>
+            </div>
+            <textarea onChange={e => {setNote({...note, 'body':e.target.value})}} defaultValue={note?.body}></textarea>
         </div>
         )
 }
