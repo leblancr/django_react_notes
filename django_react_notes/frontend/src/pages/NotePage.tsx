@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import {useState, useEffect} from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { ReactComponent as ChevronLeft } from '../assets/chevron-left.svg'
 
-const NotePage = ({match}) => {
+const NotePage = () => {
     let noteId = useParams().id
     let [note, setNote] = useState(null)
     const history = useNavigate()
@@ -12,6 +12,17 @@ const NotePage = ({match}) => {
         getNote()
     }, [noteId])
     
+    let deleteNote = async () => {
+        fetch(`/api/notes/${note.id}/delete`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(note)
+        })
+        history('/')
+    }
+
     let getNote = async () => {
         try{
             let response = await fetch(`/api/notes/${noteId}`)
@@ -25,8 +36,6 @@ const NotePage = ({match}) => {
             console.log('err:', err.message);
         }
     }
-
-    // console.log('note', note)
 
     let updateNote = async () => {
         fetch(`/api/notes/${note.id}/update`, {
@@ -49,6 +58,7 @@ const NotePage = ({match}) => {
                 <h3>
                     <ChevronLeft onClick={handleSubmit}/>
                 </h3>
+                <button onClick={deleteNote}>Delete</button>
             </div>
             <textarea onChange={e => {setNote({...note, 'body':e.target.value})}} defaultValue={note?.body}></textarea>
         </div>

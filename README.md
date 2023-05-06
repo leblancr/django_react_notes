@@ -61,6 +61,15 @@ Local:   http://localhost:5173/
 info:
 /home/rich/.pyenv/versions/3.10.10/envs/dfb_full_tutorial/lib/python3.10/site-packages/
 
+
+ReactComponent as svg
+"compilerOptions":
+{
+  [...rest...]
+  "types": ["vite-plugin-svgr/client"] <--- this line
+},
+
+
 Error: That port is already in use.
 (django_notes) rich@mx:~/projects/python/django/django_notes/mysite$ lsof -i:8000
 kill -9 pid

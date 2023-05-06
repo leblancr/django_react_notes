@@ -7,6 +7,20 @@ from .serializers import NoteSerializer
 # Create your views here.
 
 
+@api_view(['DELETE'])
+def delete_note(request, pk):
+    note = Note.objects.get(id=pk)
+    note.delete()
+    return Response(f"Note {pk} deleted")
+
+
+@api_view(['GET'])
+def get_note(request, pk):
+    note = Note.objects.get(id=pk)
+    serializer = NoteSerializer(instance=note, many=False)
+    return Response(serializer.data)
+
+
 @api_view(['GET'])
 def get_notes(request):
     notes = Note.objects.all().order_by('-updated')
@@ -33,13 +47,6 @@ def get_routes(request):
     ]
     
     return Response(routes)
-
-
-@api_view(['GET'])
-def get_note(request, pk):
-    # notes = Note.objects.get(id=pk)
-    serializer = NoteSerializer(Note.objects.get(id=pk), many=False)
-    return Response(serializer.data)
 
 
 @api_view(['PUT'])
