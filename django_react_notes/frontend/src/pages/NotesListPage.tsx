@@ -1,29 +1,36 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import ListItem from '../components/ListItem'
+import AddButton from "../components/AddButton.tsx";
 
+// Get all notes and call ListItem() on each one.
+// ListItem shows title, first 45 chars and date created
 const NotesListPage = () => {
-    let [notes, setNotes] = useState([])
+    const [notes, setNotes] = useState([])
     
     // useEffect takes arrow function
     useEffect(() => {
-        getNotes()
+        getNotes() // Gets all notes and puts the in notes with setNotes()
     }, [])
 
-    let getNotes = async () => {
+    const getNotes = async () => {
         try{
-            let response = await fetch('/api/notes/')
+            const response = await fetch('/api/notes/')
             console.log('response', response)
-            let data = await response.json()
+            const data = await response.json()
             console.log('data', data)
             setNotes(data)
-
         } catch (err) {
             // ⛔️ Uncaught SyntaxError: JSON.parse: unexpected character at
             // line 1 column 2 of the JSON data
-            console.log('err:', err.message);
+            if (err instanceof Error) {
+                console.log('err:', err.message)
+            } else {
+                console.log("getNote Failed");
+            }
         }
     }
     
+    // Each note object gets sent to ListItem
     console.log('notes', notes)
     return (
         <div className="notes">
@@ -37,6 +44,7 @@ const NotesListPage = () => {
                     <ListItem key={index} note={note}/>
                 ))}
             </div>
+            <AddButton />
         </div>
         )
 }

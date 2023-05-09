@@ -1,11 +1,39 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ListItem = ({note}) => {
+const getContent = (note: any) => {
+    const title = getTitle(note)
+    let content = note.body.replaceAll('\n', ' ')
+    content = content.replaceAll(title, '')
+
+    if (content.length > 45){
+        return content.slice(0, 45) + '...'
+    }else{
+        return content
+    }
+}
+
+const getTime = (note: any) => {
+    return new Date(note.updated).toLocaleDateString()
+}
+
+const getTitle = (note: any) => {
+    const title = note.body.split('\n')[0]
+    if (title.length > 45){
+        return title.slice(0, 45)
+    }
+    return title
+}
+
+// Each note item in the list is a link to that note url
+// Here the note object is passed in from NotesListPage
+const ListItem = (props: any) => {
+    console.log('ListItem props', props)
+    console.log('ListItem props.id', props.note.id)
     return(
-        <Link to={`notes/${note.id}`}>
+        <Link to={`notes/${props.note.id}`}>
             <div className="notes-list-item">
-                {note.body}
+                <h3>{getTitle(props.note)}</h3>
+                <p><span>{getTime(props.note)}</span>{getContent(props.note)}</p>
             </div>
         </Link>
         )
