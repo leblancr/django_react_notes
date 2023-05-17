@@ -7,17 +7,20 @@ import AddButton from "../components/AddButton.tsx";
 const NotesListPage = () => {
     const [notes, setNotes] = useState([])
     
-    // useEffect takes arrow function
+    // useEffect takes arrow function, runs when page renders
     useEffect(() => {
-        getNotes() // Gets all notes and puts the in notes with setNotes()
+        console.log('useEffect')
+        getNotes() // Gets all notes and puts them in notes with setNotes()
+        getNotes() // Gets all notes and puts them in notes with setNotes()
+        getNotes() // Gets all notes and puts them in notes with setNotes()
     }, [])
 
     const getNotes = async () => {
         try{
             const response = await fetch('/api/notes/')
-            console.log('response', response)
+            console.log('getNotes response', response)
             const data = await response.json()
-            console.log('data', data)
+            console.log('getNotes data', data)
             setNotes(data)
         } catch (err) {
             // ⛔️ Uncaught SyntaxError: JSON.parse: unexpected character at

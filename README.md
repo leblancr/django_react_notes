@@ -60,7 +60,7 @@ Local:   http://localhost:5173/
 
 info:
 /home/rich/.pyenv/versions/3.10.10/envs/dfb_full_tutorial/lib/python3.10/site-packages/
-
+./node_modules/.bin/vite - to run vite
 
 ReactComponent as svg
 "compilerOptions":

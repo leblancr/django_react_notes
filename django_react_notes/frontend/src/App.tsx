@@ -6,7 +6,7 @@ import NotePage from './pages/NotePage'
 
 function App() {
   return (
-    <Router>
+    <Router forceRefresh={true}>
       <div className="container dark">
         <div className="app">
           <Header />
