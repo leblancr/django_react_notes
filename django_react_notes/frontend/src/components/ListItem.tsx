@@ -2,9 +2,20 @@ import { Link } from 'react-router-dom'
 
 const getContent = (note: any) => {
     const title = getTitle(note) // split by newlines
+    console.log('note.body', note.body)
     let content = note.body.replaceAll('\n', ', ') // remaining items
+    console.log('content', content)
     content = content.replaceAll(title, '') // replace title with nothing
-    content = content.substring(1) // second character to end, remove first comma
+    console.log('content', content)
+    console.log('content[0]', content[0])
+
+    // remove leading commas
+    while(content.charAt(0) === ',' || content.charAt(0) === ' '){
+        console.log('remove')
+        content = content.substring(1);
+    }
+
+    console.log('content', content)
 
     if (content.length > 45){
         return content.slice(0, 45) + '...'

@@ -3,15 +3,14 @@ import ListItem from '../components/ListItem'
 import AddButton from "../components/AddButton.tsx";
 
 // Get all notes and call ListItem() on each one.
-// ListItem shows title, first 45 chars and date created
+// ListItems show on this notes list page and are clickable
+// ListItem shows title, date created and first 45 chars
 const NotesListPage = () => {
     const [notes, setNotes] = useState([])
     
     // useEffect takes arrow function, runs when page renders
     useEffect(() => {
-        console.log('useEffect')
-        getNotes() // Gets all notes and puts them in notes with setNotes()
-        getNotes() // Gets all notes and puts them in notes with setNotes()
+        console.log('NotesListPage useEffect')
         getNotes() // Gets all notes and puts them in notes with setNotes()
     }, [])
 

@@ -5,7 +5,6 @@ import { ReactComponent as ChevronLeft } from '../assets/chevron-left.svg'
 // display the note
 const NotePage = () => {
     console.log('useParams', useParams())
-    // const noteId = useParams().id
     let [note, setNote] = useState({'id': useParams().id, 'body': '', 'created': '', 'updated': ''})
     console.log('note', note)
     const navigate = useNavigate()
@@ -31,7 +30,7 @@ const NotePage = () => {
 
     // useEffect takes arrow function, called when page renders
     useEffect(() => {
-        console.log("useEffect")
+        console.log("NotePage useEffect")
         getNote() // when clicking on a note we get the note from the database
     }, [])
 
@@ -59,17 +58,16 @@ const NotePage = () => {
 
     // for chevron or done button
     const handleSubmitNote = () => {
-        console.log('noteId', note.id)
         console.log('note', note)
         if(note.id !== 'new' && !note.body){
             console.log('deleteNote', deleteNote)
-            deleteNote() // chevron with no body
+            deleteNote() // existing note with no body
         } else if (note.id !== 'new' ){
             console.log('updateNote', updateNote)
-            updateNote()
+            updateNote() // existing note with body
         } else if (note.id === 'new' && note.body){
             console.log('createNote', createNote)
-            createNote()
+            createNote() // new note with body
         }
         console.log('handleSubmitNote navigate')
         navigate('/') // go back to notes list page
@@ -99,13 +97,10 @@ const NotePage = () => {
                 )}
             </div>
             <textarea onChange={e => {
-                console.log('note1', note)
+                console.log('onChange note1', note)
                 console.log('e.target.value', e.target.value)
                 setNote({...note, body: e.target.value})
-                console.log('note2', note)
-                setNote({...note, 'body': e.target.value})
-                console.log('note3', note)
-            }} value={note.body}></textarea>
+             }} value={note.body}></textarea>
         </div>
         )
 }
