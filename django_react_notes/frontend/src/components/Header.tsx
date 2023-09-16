@@ -1,7 +1,7 @@
 const Header = () => (
         <div>
             <h1>
-                Our header
+                RichNote
             </h1>
         </div>
         )
