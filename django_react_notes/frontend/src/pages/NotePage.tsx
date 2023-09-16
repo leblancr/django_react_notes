@@ -61,16 +61,30 @@ const NotePage = () => {
         console.log('note', note)
         if(note.id !== 'new' && !note.body){
             console.log('deleteNote', deleteNote)
-            deleteNote() // existing note with no body
+            deleteNote() // chevron with no body
         } else if (note.id !== 'new' ){
             console.log('updateNote', updateNote)
-            updateNote() // existing note with body
+            updateNote()
         } else if (note.id === 'new' && note.body){
             console.log('createNote', createNote)
-            createNote() // new note with body
+            createNote()
         }
         console.log('handleSubmitNote navigate')
         navigate('/') // go back to notes list page
+    }
+
+    const tempFunc = () =>{
+        const person = {
+            name: 'blurp',
+            age: 20,
+            isMarried: false
+        }
+
+        const {name, age, isMarried} = person
+        console.log('name', name)
+        console.log('age', age)
+        console.log('isMarried', isMarried)
+
     }
 
     const updateNote = async () => {
@@ -82,6 +96,7 @@ const NotePage = () => {
             body: JSON.stringify(note)
         })
     }
+
 
     // submit note by chevron or done button
     return (
@@ -97,10 +112,9 @@ const NotePage = () => {
                 )}
             </div>
             <textarea onChange={e => {
-                console.log('onChange note1', note)
-                console.log('e.target.value', e.target.value)
+                tempFunc()
                 setNote({...note, body: e.target.value})
-             }} value={note.body}></textarea>
+            }} value={note.body}></textarea>
         </div>
         )
 }

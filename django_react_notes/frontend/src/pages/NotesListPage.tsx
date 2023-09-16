@@ -21,6 +21,7 @@ const NotesListPage = () => {
             const data = await response.json()
             console.log('getNotes data', data)
             setNotes(data)
+            console.log('setNotes data', data)
         } catch (err) {
             // ⛔️ Uncaught SyntaxError: JSON.parse: unexpected character at
             // line 1 column 2 of the JSON data
