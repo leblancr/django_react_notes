@@ -3,29 +3,7 @@ https://www.youtube.com/watch?v=tYKRAXIio28
 youtube - Django + React Notes App
 
 setup backend:
-mkdir django_react_notes
-cd django_react_notes
-# pyenv local 3.10.10 - creates python-version file
-# pyenv virtualenv 3.10.10 django_react_notes - just first time to create venv
-# pyenv activate django_react_notes
-export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
-
-Add the following to ~/.bashrc:
-function set_poetry_env {
-  if [ -n "$VIRTUAL_ENV" ]; then
-  PS1="($VIRTUAL_ENV) $PS1"
-  fi
-}
-
-set_poetry_env
-
-poetry shell - activates env
-poetry init - makes pyproject.toml
-poetry add django - adds it as a dependency
-poetry install - installs the dependencies
 poetry run django-admin startproject mysite - creates the django project
-
-django_react_notes/git init
 
 to start backend:
 /django_react_notes$ python manage.py runserver
@@ -88,3 +66,26 @@ ReactComponent as svg
 Error: That port is already in use.
 (django_notes) rich@mx:~/projects/python/django/django_notes/mysite$ lsof -i:8000
 kill -9 pid
+
+Not Found: /
+[21/Jun/2024 19:45:41] "GET / HTTP/1.1" 404 2175
+Not Found: /favicon.ico
+[21/Jun/2024 19:45:42] "GET /favicon.ico HTTP/1.1" 404 2226
+There is no code setup for /
+
+mongosh:
+test> use rich
+switched to db rich
+rich> show databases
+MongoServerError[Unauthorized]: Command listDatabases requires authentication
+rich> use admin
+switched to db admin
+admin> show databases
+MongoServerError[Unauthorized]: Command listDatabases requires authentication
+admin> db.auth("rich", "reddmon")
+{ ok: 1 }
+admin> show databases
+admin          132.00 KiB
+config         108.00 KiB
+local           72.00 KiB
+test_database  112.00 KiB
