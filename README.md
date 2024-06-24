@@ -1,6 +1,10 @@
 # django_notes
 https://www.youtube.com/watch?v=tYKRAXIio28
 youtube - Django + React Notes App
+Postgres:
+Setup a new connection for each database
+database: notes
+table: api_note
 
 setup backend:
 poetry run django-admin startproject mysite - creates the django project
@@ -12,7 +16,11 @@ to start backend:
 python manage.py makemigrations
 python manage.py migrate
 
-python manage.py createsuperuser - for /admin account richdjaQ223@
+python manage.py createsuperuser - for django admin:
+Username (leave blank to use 'rich'): 
+Email address: rkba1@proton.me
+Password: redddja
+
 python manage.py changepassword <user_name>- if they forget
 
 setup frontend:
@@ -71,7 +79,7 @@ Not Found: /
 [21/Jun/2024 19:45:41] "GET / HTTP/1.1" 404 2175
 Not Found: /favicon.ico
 [21/Jun/2024 19:45:42] "GET /favicon.ico HTTP/1.1" 404 2226
-There is no code setup for /
+There is no code setup for / route
 
 mongosh:
 test> use rich

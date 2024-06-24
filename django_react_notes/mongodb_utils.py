@@ -1,4 +1,7 @@
 from pymongo import MongoClient
+import sys
+for path in sys.path:
+    print(path)
 
 client = MongoClient(host='localhost',
                      port=27017,
@@ -7,7 +10,3 @@ client = MongoClient(host='localhost',
                      authSource='admin')
 db = client['test_database']
 collection = db['notes']
-
-import sys
-for path in sys.path:
-    print(path)

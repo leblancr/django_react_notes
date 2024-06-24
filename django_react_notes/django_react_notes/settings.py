@@ -81,8 +81,14 @@ WSGI_APPLICATION = 'django_react_notes.wsgi.application'
 #
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'notes',
+        'USER': 'rich',
+        'PASSWORD': 'reddpos',
+        'HOST': 'localhost',  # Or your PostgreSQL server's IP address
+        'PORT': '5432',  # Or your PostgreSQL server's port
     }
 }
 
